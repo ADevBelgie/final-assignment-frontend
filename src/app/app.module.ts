@@ -13,6 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ShoppingbagComponent } from './shoppingbag/shoppingbag.component';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ProductPageComponent,
     MessagesComponent,
     ProductSearchComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    ShoppingbagComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   ],
   providers: [
     MessageService,
-    ProductService
+    ProductService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })
