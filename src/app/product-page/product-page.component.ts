@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
-import { Product } from 'src/product';
+import { Product } from 'src/app/product';
 import { MessageService } from '../services/message.service';
 import { ProductService } from '../services/product.service';
 
