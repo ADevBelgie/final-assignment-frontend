@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Product } from 'src/app/product';
+import { Product } from 'src/models/product';
 import { ProductService } from '../services/product.service';
 
 @Component({

@@ -1,17 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, empty, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from 'src/app/user';
+import { User } from 'src/models/user';
 import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
 
   private BaseUrl = 'https://localhost:44378/api/Account';  // URL to web api
 
@@ -23,21 +21,17 @@ export class AccountService {
     private router: Router,
     private http: HttpClient,
     private messageService: MessageService) {
-      this.userSubject = new BehaviorSubject<User>(JSON.parse('user'));//needs to come from api
-      this.user = this.userSubject.asObservable();
     }
 
-  public get userValue(): User {
-    return this.userSubject.value;
-  }
-  login(userToVal: User) {
+  login(login: User) {
     this.log('Attempting login')
-    const usermodel = userToVal;
-    return this.http.post<User>(`${this.BaseUrl}/login`, { usermodel })
+    const usermodel = `{ "UserName": "${login.userName}", "PasswordHash": "${login.passwordHash}" }`;
+    console.log(login)
+    console.log(usermodel);
+    return this.http.post(`${this.BaseUrl}/login`, { login })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
-            this.userSubject.next(user);
             return user;
         }));
   }
@@ -62,7 +56,7 @@ export class AccountService {
     return this.http.get<User>(`${this.BaseUrl}/users/${id}`);
   }
 
-
+/*
   delete(loginId: number) {
     return this.http.delete(`${this.BaseUrl}/users/${loginId}`)
         .pipe(map(x => {
@@ -72,7 +66,7 @@ export class AccountService {
             }
             return x;
         }));
-  }
+  }*/
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
   this.messageService.add(`ProductService: ${message}`);
