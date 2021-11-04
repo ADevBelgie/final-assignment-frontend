@@ -6,32 +6,44 @@ import { map } from 'rxjs/operators';
 import { User } from 'src/models/user';
 import { MessageService } from './message.service';
 
+// Source
+// https://stackblitz.com/edit/angular-10-registration-login-example?file=src%2Fapp%2F_services%2Faccount.service.ts
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
   private BaseUrl = 'https://localhost:44378/api/Account';  // URL to web api
+  private userSubject: BehaviorSubject<User>; 
+  public user: Observable<User>;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 
+      'Transfer-Encoding': 'chunked',
+      'Content-Type': 'application/json; charset=utf-8',
+      'Server': 'Microsoft-IIS/10.0'
+    })
   };
 
   constructor(
     private router: Router,
     private http: HttpClient,
     private messageService: MessageService) {
+      this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || '{}'));
+        this.user = this.userSubject.asObservable();
     }
+
+  public get userValue(): User {
+    return this.userSubject.value;
+  }
 
   login(login: User) {
     this.log('Attempting login')
-    const usermodel = `{ "UserName": "${login.userName}", "PasswordHash": "${login.passwordHash}" }`;
-    console.log(login)
-    console.log(usermodel);
-    return this.http.post(`${this.BaseUrl}/login`, { login })
-        .pipe(map(user => {
+    return this.http.post(`${this.BaseUrl}/login`, login, this.httpOptions)
+        .pipe(map((user:any) => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('user', JSON.stringify(user)); // user looks like  Object {token:"x", expiration "2021-11-04T17:31:01Z"}
+            this.userSubject.next(user);
             return user;
         }));
   }
@@ -39,8 +51,8 @@ export class AccountService {
     this.log('logout')
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
-    //this.userSubject.next(null);
-    this.router.navigate(['/account/login']);
+    this.userSubject.next(null!);
+    // this.router.navigate(['/Home']);
   }
 
   register(user: User) {

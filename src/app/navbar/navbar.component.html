@@ -15,9 +15,15 @@
 
   <!-- Login/ Register & Shoppingbag -->
   <ul class="navbar-nav" style="margin-left: auto;margin-right: 4rem;">
-    <li class="nav-item">
+
+    <li *ngIf="!loggedIn; else elseBlock" class="nav-item">
       <a class="nav-link" href="/login">Login </a>
     </li>
+    <ng-template #elseBlock>
+      <li class="nav-item">
+        <a class="nav-link" (click)="Logout()">Logout </a>
+      </li></ng-template>
+
     <li class="nav-item">
       <a class="nav-link" href="/shoppingbag">Shoppingbag </a>
     </li>

@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       const loginUser:User = {
         userName: this.f.username.value,
-        passwordHash: this.f.password.value, // Should be hashed.
+        passwordHash: this.f.password.value,
+        token: undefined,
+        expiration: undefined
       }
       this.accountService.login(loginUser)
           .pipe(first())
