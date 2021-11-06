@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 import { AccountService } from '../services/account.service';
 
@@ -7,13 +8,24 @@ import { AccountService } from '../services/account.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
+  navigationSubscription; 
   public loggedIn:boolean
   public title = 'Sport Shop';
 
-  constructor(private accountService: AccountService) { 
+  constructor(
+    private accountService: AccountService,
+    private router: Router,) { 
     this.loggedIn = this.CheckLoggedIn()
+    // subscribe to the router events. Store the subscription so we can
+   // unsubscribe later.
+   this.navigationSubscription = this.router.events.subscribe((e: any) => {
+    // If it is a NavigationEnd event re-initalise the component
+    if (e instanceof NavigationEnd) {
+      this.initialiseInvites();
+    }
+  });
   }
 
   ngOnInit(): void {
@@ -26,6 +38,16 @@ export class NavbarComponent implements OnInit {
   Logout(){
     this.accountService.logout()
     window.location.reload();
+  }
+  initialiseInvites() {
+    // Set default values and re-fetch any data you need.
+    this.loggedIn = this.CheckLoggedIn()
+  }
+ 
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }
 
