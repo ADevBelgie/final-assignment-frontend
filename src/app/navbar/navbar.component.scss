@@ -1,17 +1,36 @@
 *{
-  color: darkslategrey;
+  z-index: 2;
+  color: #212020;
+  font: 400 18px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+.wrap{
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  width: 100%; 
+}
+.container{
+  padding: 0px;
+}
+.colornav{
+  background-color: #838383;
+  opacity: 0.9;
+}
+a:hover{
+  color:white;
+  font-weight: 420;
 }
 #title{
   margin: 0px 10px 0px 20px;
   height: 60px;
   transition: all 0.5s;
 }
-
 #eye1{
   position: absolute;
   top: 13px;
   left: 44px;
   height: 60px;
+  
 }
 #eye2{
   position: absolute;
@@ -29,23 +48,26 @@
 .nav-logo:hover #eye2{
   animation: eye2-animation 1s cubic-bezier(1,1.98,0,1) forwards;
 }
+
 @keyframes eye1-animation{
-  10%{
-    height: 60px;
-    transform: translate(0,0);
-  }
   100%{
     height: 80px;
-    transform: translate(20px,-7px);
+    transform: translate(20px,-13px);
+  }
+}
+@keyframes eye1-animation-reverse{
+  from{
+    height: 80px;
+    transform: translate(20px,-13px);
+  }
+  to{
+    height: 60px;
+    transform: translate(0,0);
   }
 }
 @keyframes eye2-animation{
-  10%{
-    height: 60px;
-    transform: translate(0,0);
-  }
   100%{
     height: 80px;
-    transform: translate(-45px,-7px);
+    transform: translate(-45px,-13px);
   }
 }
