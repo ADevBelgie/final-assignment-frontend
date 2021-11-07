@@ -6,4 +6,5 @@ export interface Product {
   description: string;
   obsolete: boolean;
   amountInStock: number;
+  image:string;
 }

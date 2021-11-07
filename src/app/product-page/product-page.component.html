@@ -8,7 +8,7 @@
 
         <app-product-search></app-product-search>
 
-        <h2 class="m-1">Page options</h2>
+        <h2>Page options</h2>
 
         <p class="m-1">Results per page</p>
         <form [formGroup]="formPPP">
@@ -67,6 +67,7 @@
           <div class="col-sm-4" *ngFor="let item of ColumnLength();  index as j;">
             <div class="text-center">
               <div class="thumb-content" *ngIf="products[i*3+j] != null">
+                <img class="thumbnail" src="/assets/{{products[i*3+j].image}}">
                 <h3><a class="text-dark" href="detail/{{products[i*3+j].productId}}">{{products[i*3+j].name}}</a></h3>
                 <p class="item - price">$ {{products[i*3+j].price}}</p>
                 <a href="#">Add to Cart</a>
