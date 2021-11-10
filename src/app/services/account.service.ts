@@ -19,7 +19,6 @@ export class AccountService {
 
   httpOptions = {
     headers: new HttpHeaders({ 
-      'Transfer-Encoding': 'chunked',
       'Content-Type': 'application/json; charset=utf-8',
       'Server': 'Microsoft-IIS/10.0'
     })

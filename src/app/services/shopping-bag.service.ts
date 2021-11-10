@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { ShoppingBag } from 'src/models/shopping-bag';
 import { ShoppingItem } from 'src/models/shopping-item';
+import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class ShoppingBagService {
   private BaseUrl = 'https://localhost:44378/api';  // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 
+      'Content-Type': 'application/json; charset=utf-8',
+      'Server': 'Microsoft-IIS/10.0'
+     })
   };
 
   constructor(
@@ -25,7 +29,8 @@ export class ShoppingBagService {
 
     /** GET shoppingbag from the server */
     getShoppingBag(): Observable<ShoppingBag> {
-      return this.http.get<ShoppingBag>(`${this.BaseUrl}/Shopping`)
+      this.CheckHeaders()
+      return this.http.get<ShoppingBag>(`${this.BaseUrl}/Shopping`, this.httpOptions)
         .pipe(
           tap(_ => this.log('fetched shoppingbag')),
           catchError(this.handleError<ShoppingBag>('GetShoppingBag'))
@@ -33,13 +38,10 @@ export class ShoppingBagService {
     }
     
     // Create/ Add product with amount to shopping bag
-    putShoppingItemToBag(productId:string, amountToAdd:number) {
-      return this.http.put(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}`, {})// empty body
-      .pipe(map(x => {
-        // update stored data base on this put request
-        
-        return x;
-      }));
+    putShoppingItemToBag(productId:number, amountToAdd:number) {
+      this.CheckHeaders()
+      return this.http.put<any>(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}`, {}, this.httpOptions)// empty body
+      .subscribe()
     }
     // Change to set amount in shoppingbag
     putSetAmountShoppingItemToBag(productId:number, amountToAdd:number) {
@@ -82,5 +84,13 @@ export class ShoppingBagService {
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`ProductService: ${message}`);
+  }
+  /** add auth when not already added in headers */
+  CheckHeaders(){
+    if(this.httpOptions.headers.get('Authorization') == null){
+      const token = JSON.parse(localStorage.getItem('user') || "").token
+      this.httpOptions.headers = this.httpOptions.headers.append('Authorization' , `Bearer ${token}`);
+    }
+    
   }
 }

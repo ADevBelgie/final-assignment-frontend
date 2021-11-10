@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
 import { Product } from 'src/models/product';
 import { MessageService } from '../services/message.service';
 import { ProductService } from '../services/product.service';
+import { ShoppingBagService } from '../services/shopping-bag.service';
 
 @Component({
   selector: 'app-product-page',
@@ -25,6 +27,8 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private shoppingBagService: ShoppingBagService,
+    private router: Router,
     private messageService: MessageService,
     fb: FormBuilder)
   {
@@ -71,6 +75,15 @@ export class ProductPageComponent implements OnInit {
   AmountOfPagesLength(): Array<any> {
     return new Array(this.amountOfPages);
     // Can be extended ıf there are to many pages
+  }
+  AddProductToBag(productId:number){
+    // Redirect to login if not logged in
+    if(localStorage.getItem('user') == null){
+      this.router.navigate(['/login']);
+    }
+    else{
+      this.shoppingBagService.putShoppingItemToBag(productId, 1);
+    }
   }
   Refresh(){
     setTimeout(()=>{ this.ngOnInit(); }, 200)

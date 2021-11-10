@@ -1,7 +1,21 @@
 <div class="box">
     <div class="navfiller"></div>
     <div class="container main">
-        <p>shoppingbag works!</p>
-        <div *ngFor="let item of ProductItemLenght()"></div>
+        <h2>Your shoppingbag</h2>
+        <div *ngIf="ProductItemLenghtBool();else elseBlock">
+            <p>is empty</p>
+        </div>
+        <ng-template #elseBlock >
+            <div class="row">
+                <div class="col">Name</div>
+                <div class="col">Price</div>
+                <div class="col">Amount</div>
+            </div>
+            <div class="row" *ngFor="let item of ProductItemLenght(); index as i;">
+                <div class="col">{{products[i].name}}</div>
+                <div class="col">{{products[i].price}}</div>
+                <div class="col">{{item.amount}}</div>
+            </div>
+        </ng-template>
     </div>
 </div>

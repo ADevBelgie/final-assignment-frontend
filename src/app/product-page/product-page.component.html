@@ -70,7 +70,7 @@
                 <img class="thumbnail" src="/assets/{{products[i*3+j].image}}">
                 <h3><a class="text-dark" href="detail/{{products[i*3+j].productId}}">{{products[i*3+j].name}}</a></h3>
                 <p class="item - price">$ {{products[i*3+j].price}}</p>
-                <a href="#">Add to Cart</a>
+                <a (click)="AddProductToBag(i*3+j+1)">Add to Cart</a>
               </div>
             </div>
           </div>
