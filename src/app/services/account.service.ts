@@ -56,7 +56,8 @@ export class AccountService {
 
   register(user: User) {
     this.log('register')
-    return this.http.post(`${this.BaseUrl}/users/register`, user);
+    console.log(user.passwordHash)
+    return this.http.post(`${this.BaseUrl}/register`, user);
   }
 
   getAll() {

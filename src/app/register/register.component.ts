@@ -29,10 +29,11 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/']);
       }
       this.form = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        //firstName: ['', Validators.required],
+        //lastName: ['', Validators.required],
+        email: ['', Validators.email],
         username: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6)]]
+        passwordHash: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
       if (this.form.invalid) {
           return;
       }
-
+      console.log(this.form.value)
       this.loading = true;
       this.accountService.register(this.form.value)
           .pipe(first())

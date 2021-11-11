@@ -64,7 +64,6 @@ export class ProductService {
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.BaseUrl}/Product/${id}`;
-    console.log(id)
     return this.http.get<Product>(url).pipe(
       tap(_ => this.log(`fetched product id=${id}`)),
       catchError(this.handleError<Product>(`getProduct id=${id}`))

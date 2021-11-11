@@ -67,10 +67,10 @@
           <div class="col-sm-4" *ngFor="let item of ColumnLength();  index as j;">
             <div class="text-center">
               <div class="thumb-content" *ngIf="products[i*3+j] != null">
-                <img class="thumbnail" src="/assets/{{products[i*3+j].image}}">
-                <h3><a class="text-dark" href="detail/{{products[i*3+j].productId}}">{{products[i*3+j].name}}</a></h3>
+                <a class="text-dark" href="detail/{{products[i*3+j].productId}}"><img class="thumbnail" src="/assets/{{products[i*3+j].image}}">
+                <h3>{{products[i*3+j].name}}</h3></a>
                 <p class="item - price">$ {{products[i*3+j].price}}</p>
-                <a (click)="AddProductToBag(i*3+j+1)">Add to Cart</a>
+                <a class="add-to-cart" (click)="AddProductToBag(products[i*3+j].productId)">Add to Cart</a>
               </div>
             </div>
           </div>

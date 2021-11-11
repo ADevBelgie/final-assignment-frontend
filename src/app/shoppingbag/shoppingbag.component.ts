@@ -41,4 +41,11 @@ export class ShoppingbagComponent implements OnInit {
   ProductItemLenghtBool(): boolean{
     return this.shoppingItems.length == 0
   }
+  productById(productId:number): Product{
+    let product = this.products.find(x => x.productId == productId);
+    if(!product){
+      throw new Error("");
+    }
+    return product
+  }
 }
