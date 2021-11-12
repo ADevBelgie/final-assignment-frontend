@@ -46,20 +46,12 @@ export class ShoppingBagService {
     // Change to set amount in shoppingbag
     putSetAmountShoppingItemToBag(productId:number, amountToAdd:number) {
       return this.http.put(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}&setAmount=true`, {})// empty body
-      .pipe(map(x => {
-        // update stored data base on this put request
-        
-        return x;
-      }));
+      .subscribe()
     }
     // Remove Product from shoppingbag
     deleteShoppingItem(productId:number){
-      return this.http.delete(`${this.BaseUrl}/Shopping?productId=${productId}`, {})// empty body
-      .pipe(map(x => {
-        // update stored data base on this delete request
-        
-        return x;
-      }));
+      return this.http.delete(`${this.BaseUrl}/Shopping?productId=${productId}`, this.httpOptions)// empty body
+      .subscribe();
     }
     /**
    * Handle Http operation that failed.

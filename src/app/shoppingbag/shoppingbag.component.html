@@ -1,18 +1,17 @@
-<div class="box">
-    <div class="navfiller"></div>
-    <div class="container main">
-        <h1>Your shoppingbag</h1>
-        <div *ngIf="ProductItemLenghtBool();else elseBlock">
-            <p>is empty</p>
-        </div>
-        <ng-template #elseBlock >
-            <div class="row m-1 p-1 border-bottom" *ngFor="let item of ProductItemLenght(); index as i;">
-                <img class="thumbnail" src="/assets/{{productById(item.productId).image}}">
-                <div class="col name">{{productById(item.productId).name}}</div>
-                <div class="col">For each {{productById(item.productId).price | currency}}</div>
-                <div class="col">Amount {{item.amount}}</div><!--https://www.tektutorialshub.com/angular/select-options-example-in-angular/-->
-                <div class="col-1 total-price">{{item.amount*productById(item.productId).price | currency}}</div>
-            </div>
-        </ng-template>
+<div class="container main">
+    <h1>Your shoppingbag</h1>
+    <div *ngIf="ProductItemLenghtBool();else elseBlock">
+        <p>is empty</p>
     </div>
+    <ng-template #elseBlock >
+        <div class="row m-1 p-1 border-bottom" *ngFor="let item of ProductItemLenght(); index as i;">
+            <a href="detail/{{item.productId}}" class="col"><img class="thumbnail" src="/assets/{{productById(item.productId).image}}"></a> 
+            <div class="col mt-2"><a href="detail/{{item.productId}}" class="col name">{{productById(item.productId).name}}</a></div>
+            <div class="col mt-2">For each {{productById(item.productId).price | currency}}</div>
+            <div class="col mt-2">Amount {{item.amount}}</div> 
+            <div class="col-1 mt-2 total-price">{{item.amount*productById(item.productId).price | currency}}</div>
+            <div class="col-1 mt-2"><a (click)="DeleteSHoppingItem(item.productId)">X</a></div>
+        </div>
+    </ng-template>
 </div>
+<!-- https://www.tektutorialshub.com/angular/select-options-example-in-angular/ -->

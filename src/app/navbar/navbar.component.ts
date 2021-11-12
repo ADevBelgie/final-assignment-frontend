@@ -19,13 +19,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private router: Router,) { 
     this.loggedIn = this.CheckLoggedIn()
     // subscribe to the router events. Store the subscription so we can
-   // unsubscribe later.
-   this.navigationSubscription = this.router.events.subscribe((e: any) => {
-    // If it is a NavigationEnd event re-initalise the component
-    if (e instanceof NavigationEnd) {
-      this.initialiseInvites();
-    }
-  });
+    // unsubscribe later.
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+        // If it is a NavigationEnd event re-initalise the component
+        if (e instanceof NavigationEnd) {
+          this.initialiseInvites();
+        }
+      });
   }
 
   ngOnInit(): void {

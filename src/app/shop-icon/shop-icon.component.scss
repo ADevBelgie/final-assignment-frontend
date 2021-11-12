@@ -1,0 +1,35 @@
+a{
+    margin: 0px;
+}
+#title{
+    margin: 0px 10px 0px 20px;
+    height: 60px;
+    transition: cubic-bezier(.71,.01,1,1) all 0.6s;
+}
+#eye1{
+    position: absolute;
+    top: 0px;
+    left: 44px;
+    height: 60px;
+    transition: all 1s cubic-bezier(1,1.98,0,1);
+}
+#eye2{
+    position: absolute;
+    top: 0px;
+    left: 149px;
+    height: 60px;
+    transition: all 1s cubic-bezier(1,1.98,0,1);
+}
+
+.sport-logo:hover #title{
+    opacity: 0; 
+}
+.sport-logo:hover #eye1{
+    height: 80px;
+    transform: translate(20px,-13px);
+    //animation: eye1-animation 1s cubic-bezier(1,1.98,0,1) forwards;
+}
+.sport-logo:hover #eye2{
+    height: 80px;
+    transform: translate(-45px,-13px);
+}

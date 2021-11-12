@@ -1,83 +1,80 @@
-<div class="box">
-  <div class="navfiller"></div>
-  <div class="container main">
+<div class="container main">
 
-    <div class="row m-1">
+  <div class="row">
 
-      <div class="col p-4 pageisland">
+    <div class="col p-4 pageisland">
 
-        <app-product-search></app-product-search>
+      <app-product-search></app-product-search>
 
-        <h2>Page options</h2>
+      <h2>Page options</h2>
 
-        <p class="m-1">Results per page</p>
-        <form [formGroup]="formPPP">
-          <label>
-            <input type="radio" value="3" formControlName="productsPerPage">
-              <span>3</span>
-          </label><br>
-          <label>
-            <input type="radio" value="9" formControlName="productsPerPage">
-              <span>9</span>
-          </label><br>
-          <label>
-            <input type="radio" value="18" formControlName="productsPerPage">
-              <span>18</span>
-          </label><br>
-        </form>
-        <p class="m-1">Category</p>
-        <form [formGroup]="formCategory">
-          <label>
-            <input type="radio" value="none" formControlName="productCategory">
-              <span>All</span>
-          </label><br>
-          <label>
-            <input type="radio" value="food" formControlName="productCategory">
-              <span>Food</span>
-          </label><br>
-          <label>
-            <input type="radio" value="nonfood" formControlName="productCategory">
-              <span>Non Food</span>
-          </label><br>
-        </form>
+      <p class="m-1">Results per page</p>
+      <form [formGroup]="formPPP">
+        <label>
+          <input type="radio" value="3" formControlName="productsPerPage">
+            <span>3</span>
+        </label><br>
+        <label>
+          <input type="radio" value="9" formControlName="productsPerPage">
+            <span>9</span>
+        </label><br>
+        <label>
+          <input type="radio" value="18" formControlName="productsPerPage">
+            <span>18</span>
+        </label><br>
+      </form>
+      <p class="m-1">Category</p>
+      <form [formGroup]="formCategory">
+        <label>
+          <input type="radio" value="none" formControlName="productCategory">
+            <span>All</span>
+        </label><br>
+        <label>
+          <input type="radio" value="food" formControlName="productCategory">
+            <span>Food</span>
+        </label><br>
+        <label>
+          <input type="radio" value="nonfood" formControlName="productCategory">
+            <span>Non Food</span>
+        </label><br>
+      </form>
 
-      </div>
+    </div>
 
-      <div class="col-9 pb-3 pageisland">
+    <div class="col-9 pb-3 pageisland">
 
-        <nav id="pagenav">
-          <ul class="pagination justify-content-center p-3">
-              <li class="page-item" [class.disabled]="currentPage == 1">
-                  <a class="page-link" aria-label="Previous" (click)="getProducts(currentPage-1)">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only"></span>
-                  </a>
-              </li>
-              <li class="page-item" *ngFor="let item of AmountOfPagesLength();  index as i;" [class.active]="currentPage == i+1"><a class="page-link" (click)="getProducts(i+1)">{{i+1}}</a></li>
-              <li class="page-item" [class.disabled]="currentPage == amountOfPages">
-                  <a class="page-link" aria-label="Next" (click)="getProducts(currentPage+1)">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only"></span>
-                  </a>
-              </li>
-          </ul>
-        </nav>
+      <nav id="pagenav">
+        <ul class="pagination justify-content-center p-3">
+            <li class="page-item" [class.disabled]="currentPage == 1">
+                <a class="page-link" aria-label="Previous" (click)="getProducts(currentPage-1)">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only"></span>
+                </a>
+            </li>
+            <li class="page-item" *ngFor="let item of AmountOfPagesLength();  index as i;" [class.active]="currentPage == i+1"><a class="page-link" (click)="getProducts(i+1)">{{i+1}}</a></li>
+            <li class="page-item" [class.disabled]="currentPage == amountOfPages">
+                <a class="page-link" aria-label="Next" (click)="getProducts(currentPage+1)">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only"></span>
+                </a>
+            </li>
+        </ul>
+      </nav>
 
-        <div class="row m-2" *ngFor="let item of RowLength();  index as i;">
-          <div class="col-sm-4" *ngFor="let item of ColumnLength();  index as j;">
-            <div class="text-center">
-              <div class="thumb-content" *ngIf="products[i*3+j] != null">
-                <a class="text-dark" href="detail/{{products[i*3+j].productId}}"><img class="thumbnail" src="/assets/{{products[i*3+j].image}}">
-                <h3>{{products[i*3+j].name}}</h3></a>
-                <p class="item - price">$ {{products[i*3+j].price}}</p>
-                <a class="add-to-cart" (click)="AddProductToBag(products[i*3+j].productId)">Add to Cart</a>
-              </div>
+      <div class="row m-2" *ngFor="let item of RowLength();  index as i;">
+        <div class="col-sm-4" *ngFor="let item of ColumnLength();  index as j;">
+          <div class="text-center">
+            <div class="thumb-content" *ngIf="products[i*3+j] != null">
+              <a class="text-dark" href="detail/{{products[i*3+j].productId}}"><img class="thumbnail" src="/assets/{{products[i*3+j].image}}">
+              <h3>{{products[i*3+j].name}}</h3></a>
+              <p class="item - price">$ {{products[i*3+j].price}}</p>
+              <a class="add-to-cart" (click)="AddProductToBag(products[i*3+j].productId)">Add to Cart</a>
             </div>
           </div>
         </div>
-
       </div>
-      
+
     </div>
+    
   </div>
 </div>

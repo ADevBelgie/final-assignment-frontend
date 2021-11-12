@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingbagComponent } from './shoppingbag/shoppingbag.component';
 import { AccountService } from './services/account.service';
+import { FooterInfoComponent } from './footer-info/footer-info.component';
+import { ShopIconComponent } from './shop-icon/shop-icon.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AccountService } from './services/account.service';
     ProductDetailComponent,
     LoginComponent,
     RegisterComponent,
-    ShoppingbagComponent
+    ShoppingbagComponent,
+    FooterInfoComponent,
+    ShopIconComponent
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ export class ShoppingbagComponent implements OnInit {
     private shoppingBagService: ShoppingBagService,
     private productService: ProductService,
     private messageService: MessageService,
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.getShoppingItems();
@@ -36,7 +36,10 @@ export class ShoppingbagComponent implements OnInit {
     });
   }
   ProductItemLenght(): ShoppingItem[] {
-    return this.shoppingItems;
+    if(this.shoppingItems.length == this.products.length){
+      return this.shoppingItems;
+    }
+    return []
   }
   ProductItemLenghtBool(): boolean{
     return this.shoppingItems.length == 0
@@ -47,5 +50,18 @@ export class ShoppingbagComponent implements OnInit {
       throw new Error("");
     }
     return product
+  }
+  DeleteSHoppingItem(productId:number){
+    // Delete item from local and from backend
+    var index = this.shoppingItems.findIndex(x => x.productId == productId)
+    if (index !== -1) {
+      this.shoppingItems.splice(index, 1);
+    }
+    var index = this.products.findIndex(x => x.productId == productId)
+    if (index !== -1) {
+      this.products.splice(index, 1);
+    }
+
+    this.shoppingBagService.deleteShoppingItem(productId)
   }
 }
