@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { observable } from 'rxjs';
+import { subscribeOn } from 'rxjs/operators';
 import { Product } from 'src/models/product';
 import { ShoppingItem } from 'src/models/shopping-item';
 import { MessageService } from '../services/message.service';
@@ -13,18 +15,43 @@ import { ShoppingBagService } from '../services/shopping-bag.service';
 export class ShoppingbagComponent implements OnInit {
   public shoppingItems: ShoppingItem[] = [];
   public products: Product[] = [];
-
+ 
+  public amountOptions = [
+    { id: 1, name: 1 },
+    { id: 2, name: 2 },
+    { id: 3, name: 3 },
+    { id: 4, name: 4 },
+    { id: 5, name: 5 },
+    { id: 6, name: 6 },
+    { id: 7, name: 7 },
+    { id: 8, name: 8 },
+    { id: 9, name: 9 },
+    { id: 10, name: 10 },
+    { id: 11, name: "More" },
+  ];
   constructor(
     private shoppingBagService: ShoppingBagService,
     private productService: ProductService,
     private messageService: MessageService,
-  ) {  }
+  ) {   }
 
   ngOnInit(): void {
     this.getShoppingItems();
   }
+  submit(event: any, productId:number) {
+    if(!isNaN(Number(event.target.value)) && typeof Number(event.target.value) === 'number'){
+      // Change item amount from local and from backend
+      var sItem = this.shoppingItems.find(x => x.productId == productId)
+      var index = this.shoppingItems.findIndex(x => x.productId == productId)
+      if (index !== -1 && sItem) {
+        sItem.amount = Number(event.target.value)
+        this.shoppingItems[index] = sItem;
+      }
+      this.shoppingBagService.putSetAmountShoppingItemToBag( productId, Number(event.target.value)).subscribe(()=>location.reload())
+    }
+    
+  }
   getShoppingItems() {
-    console.log("retrieving shoppingitems");
     this.shoppingBagService.getShoppingBag() // Get only 1 page
     .subscribe(shoppingBag => {
       this.shoppingItems = shoppingBag.items; // shoppingBag.items is an Array(3) [ {…}, {…}, {…} ]

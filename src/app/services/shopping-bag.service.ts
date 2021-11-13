@@ -41,12 +41,10 @@ export class ShoppingBagService {
     putShoppingItemToBag(productId:number, amountToAdd:number) {
       this.CheckHeaders()
       return this.http.put<any>(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}`, {}, this.httpOptions)// empty body
-      .subscribe()
     }
     // Change to set amount in shoppingbag
     putSetAmountShoppingItemToBag(productId:number, amountToAdd:number) {
-      return this.http.put(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}&setAmount=true`, {})// empty body
-      .subscribe()
+      return this.http.put(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}&setAmount=true`, {}, this.httpOptions)// empty body
     }
     // Remove Product from shoppingbag
     deleteShoppingItem(productId:number){

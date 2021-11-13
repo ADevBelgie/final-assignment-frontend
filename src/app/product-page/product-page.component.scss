@@ -13,15 +13,7 @@
 }
 .pagination{
   margin-bottom: .1rem;
-}
-.radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0;
-}
-.radio-button {
-  margin: 5px;
-}
+} 
 .thumbnail{
   width: 100px;
   height: 100px;
@@ -31,13 +23,41 @@ h2{
   font-size: 1.1rem;
   margin: 0px 0px 0.5rem 0px;
 }
-form{
-  margin: 0.5rem;
-}
-form span{
-  margin: 0.5rem;
-}
+
 .add-to-cart{
   text-decoration: underline;
   cursor: pointer;
+}
+.active a{
+  background-color: #7ebb7e;
+  border: solid 1px #7ebb7e;
+}
+.page-link{
+  color: #2daf2d;
+}
+a:hover{
+  cursor: pointer;
+}
+label > input[type="radio"] {
+  display: none;
+}
+label > input[type="radio"] + *::before {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: 2px;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.15rem;
+  border-color: gray;
+}
+label > input[type="radio"]:checked + *::before {
+  background: radial-gradient(#7ebb7e 0%, #7ebb7e 40%, transparent 50%, transparent);
+  border-color: #7ebb7e;
+}
+label > input[type="radio"]:checked + * {
+  color: #273b27;
 }
