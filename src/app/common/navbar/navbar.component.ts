@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-navbar',

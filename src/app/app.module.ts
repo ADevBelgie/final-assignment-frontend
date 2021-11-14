@@ -3,32 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ProductPageComponent } from './product-page/product-page.component';
-import { MessagesComponent } from './messages/messages.component';
-import { MessageService } from './services/message.service';
+import { NavbarComponent } from './common/navbar/navbar.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { ProductSearchComponent } from './product-search/product-search.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ShoppingbagComponent } from './shoppingbag/shoppingbag.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ShoppingbagComponent } from './pages/shoppingbag/shoppingbag.component';
 import { AccountService } from './services/account.service';
-import { FooterInfoComponent } from './footer-info/footer-info.component';
-import { ShopIconComponent } from './shop-icon/shop-icon.component';
-import { AboutShopComponent } from './about-shop/about-shop.component';
-import { AboutCreatorComponent } from './about-creator/about-creator.component';
-import { KeepShoppingComponent } from './keep-shopping/keep-shopping.component';
+import { FooterInfoComponent } from './common/footer-info/footer-info.component';
+import { ShopIconComponent } from './buttons-icons/shop-icon/shop-icon.component';
+import { AboutShopComponent } from './pages/about-shop/about-shop.component';
+import { AboutCreatorComponent } from './pages/about-creator/about-creator.component';
+import { KeepShoppingComponent } from './buttons-icons/keep-shopping/keep-shopping.component';
+import { AddToCartComponent } from './buttons-icons/add-to-cart/add-to-cart.component';
+import { ProceedWithPaymentComponent } from './buttons-icons/proceed-with-payment/proceed-with-payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ProductPageComponent,
-    MessagesComponent,
     ProductSearchComponent,
     ProductDetailComponent,
     LoginComponent,
@@ -38,7 +37,9 @@ import { KeepShoppingComponent } from './keep-shopping/keep-shopping.component';
     ShopIconComponent,
     AboutShopComponent,
     AboutCreatorComponent,
-    KeepShoppingComponent
+    KeepShoppingComponent,
+    AddToCartComponent,
+    ProceedWithPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,6 @@ import { KeepShoppingComponent } from './keep-shopping/keep-shopping.component';
     MatRadioModule
   ],
   providers: [
-    MessageService,
     ProductService,
     AccountService
   ],

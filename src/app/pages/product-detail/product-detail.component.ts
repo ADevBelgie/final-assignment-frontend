@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/models/product';
-import { MessageService } from '../services/message.service';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ShoppingBagService } from '../services/shopping-bag.service';
+import { ShoppingBagService } from '../../services/shopping-bag.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -17,7 +16,6 @@ export class ProductDetailComponent implements OnInit {
     private shoppingBagService: ShoppingBagService,
     private productService: ProductService,
     private router: Router,
-    private messageService: MessageService,
     private route: ActivatedRoute,
   ) { }
 
@@ -37,12 +35,13 @@ export class ProductDetailComponent implements OnInit {
       })
   }
   AddProductToBag(){
+    console.log("add")
     // Redirect to login if not logged in
     if(localStorage.getItem('user') == null){
       this.router.navigate(['/login']);
     }
     else{
-      this.shoppingBagService.putShoppingItemToBag(this.routeId, 1);
+      this.shoppingBagService.putShoppingItemToBag(this.routeId, 1).subscribe();
     }
   }
 }

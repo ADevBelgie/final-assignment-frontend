@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/models/user';
-import { MessageService } from './message.service';
 
 // Source
 // https://stackblitz.com/edit/angular-10-registration-login-example?file=src%2Fapp%2F_services%2Faccount.service.ts
@@ -26,8 +25,7 @@ export class AccountService {
 
   constructor(
     private router: Router,
-    private http: HttpClient,
-    private messageService: MessageService) {
+    private http: HttpClient) {
       this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || '{}'));
         this.user = this.userSubject.asObservable();
     }
@@ -81,7 +79,7 @@ export class AccountService {
   }*/
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
-  this.messageService.add(`ProductService: ${message}`);
+  console.log(`AccountServiceService: ${message}`);
   }
 
 }

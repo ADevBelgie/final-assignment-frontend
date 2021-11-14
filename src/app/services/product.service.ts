@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from './message.service';
 import { Product } from 'src/models/product';
 
 
@@ -18,8 +17,7 @@ export class ProductService {
   };
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    private http: HttpClient) { }
 
 
   /** GET productspage from the server */
@@ -134,6 +132,6 @@ export class ProductService {
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`ProductService: ${message}`);
+    console.log(`ProductService: ${message}`);
   }
 }

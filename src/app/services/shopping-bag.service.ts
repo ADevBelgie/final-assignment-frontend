@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from './message.service';
 import { ShoppingBag } from 'src/models/shopping-bag';
 import { ShoppingItem } from 'src/models/shopping-item';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
@@ -24,8 +23,7 @@ export class ShoppingBagService {
   };
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    private http: HttpClient) { }
 
     /** GET shoppingbag from the server */
     getShoppingBag(): Observable<ShoppingBag> {
@@ -73,7 +71,7 @@ export class ShoppingBagService {
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`ProductService: ${message}`);
+    console.log(`ShoppingService: ${message}`);
   }
   /** add auth when not already added in headers */
   CheckHeaders(){

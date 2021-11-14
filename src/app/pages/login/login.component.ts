@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/models/user';
 
-import { AccountService } from '../services/account.service';
-import { AlertService } from '../services/alert.service';
+import { AccountService } from '../../services/account.service';
+import { AlertService } from '../../services/alert.service';
 
 
 @Component({

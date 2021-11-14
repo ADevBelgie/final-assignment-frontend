@@ -3,9 +3,8 @@ import { observable } from 'rxjs';
 import { subscribeOn } from 'rxjs/operators';
 import { Product } from 'src/models/product';
 import { ShoppingItem } from 'src/models/shopping-item';
-import { MessageService } from '../services/message.service';
-import { ProductService } from '../services/product.service';
-import { ShoppingBagService } from '../services/shopping-bag.service';
+import { ProductService } from '../../services/product.service';
+import { ShoppingBagService } from '../../services/shopping-bag.service';
 
 @Component({
   selector: 'app-shoppingbag',
@@ -32,7 +31,6 @@ export class ShoppingbagComponent implements OnInit {
   constructor(
     private shoppingBagService: ShoppingBagService,
     private productService: ProductService,
-    private messageService: MessageService,
   ) {   }
 
   ngOnInit(): void {

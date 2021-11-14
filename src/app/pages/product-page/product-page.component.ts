@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
 import { Product } from 'src/models/product';
-import { MessageService } from '../services/message.service';
-import { ProductService } from '../services/product.service';
-import { ShoppingBagService } from '../services/shopping-bag.service';
+import { ProductService } from '../../services/product.service';
+import { ShoppingBagService } from '../../services/shopping-bag.service';
 
 @Component({
   selector: 'app-product-page',
@@ -29,7 +28,6 @@ export class ProductPageComponent implements OnInit {
     private productService: ProductService,
     private shoppingBagService: ShoppingBagService,
     private router: Router,
-    private messageService: MessageService,
     fb: FormBuilder)
   {
   // Radiobuttons productsPerPage
@@ -55,7 +53,6 @@ export class ProductPageComponent implements OnInit {
   }
   getProducts(pageNumber:number): void {
     this.currentPage = pageNumber;
-    this.messageService.add("retrieving products");
     this.productService.getProductsPage(this.formPPP.value.productsPerPage ,pageNumber, this.formCategory.value.productCategory) // Get only 1 page
     .subscribe(products => {
       this.products = products;
