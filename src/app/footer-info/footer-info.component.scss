@@ -12,6 +12,10 @@ a:hover{
     opacity: 0.8;
     padding-top: 2rem;
 }
+ul{
+    padding: 0px;
+    margin-bottom: 0.1rem;
+}
 .wrap-alt{
     margin: auto;
     width: 800px;
@@ -41,5 +45,20 @@ a:hover{
     background-color: grey;
 }
 .logo{
-    padding:  1rem 5rem 5rem 5rem;
+    padding:  1rem 5rem 1rem 5rem;
+}
+.svg-icon{
+    margin: 0.1rem 0.5rem 1rem 0.5rem;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+.logos-row{
+    margin: 0.1rem 0.5rem 0rem 0.5rem;
+    padding: 1rem;
+}
+.logos-row .svg-icon{
+    margin: 0rem 0.5rem 0rem 0.5rem;
+    width: 30px;
+    height: 30px;
 }

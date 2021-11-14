@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutCreatorComponent } from './about-creator/about-creator.component';
+import { AboutShopComponent } from './about-shop/about-shop.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'detail/:id', component: ProductDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'about-shop', component: AboutShopComponent },
+  { path: 'about-creator', component: AboutCreatorComponent },
   { path: 'shoppingbag', component: ShoppingbagComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'Home'},
 ];

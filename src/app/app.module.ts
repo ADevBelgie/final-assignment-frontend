@@ -19,6 +19,9 @@ import { ShoppingbagComponent } from './shoppingbag/shoppingbag.component';
 import { AccountService } from './services/account.service';
 import { FooterInfoComponent } from './footer-info/footer-info.component';
 import { ShopIconComponent } from './shop-icon/shop-icon.component';
+import { AboutShopComponent } from './about-shop/about-shop.component';
+import { AboutCreatorComponent } from './about-creator/about-creator.component';
+import { KeepShoppingComponent } from './keep-shopping/keep-shopping.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { ShopIconComponent } from './shop-icon/shop-icon.component';
     RegisterComponent,
     ShoppingbagComponent,
     FooterInfoComponent,
-    ShopIconComponent
+    ShopIconComponent,
+    AboutShopComponent,
+    AboutCreatorComponent,
+    KeepShoppingComponent
   ],
   imports: [
     BrowserModule,

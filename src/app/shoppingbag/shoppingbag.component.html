@@ -3,24 +3,12 @@
     <div *ngIf="ProductItemLenghtBool();else elseBlock">
         <h1>Your shoppingbag is empty</h1>
         <h1 class="text-muted">Did you mean to add items?</h1>
-        <a href="/Home"><div class="keep-shopping">
-            <div class="svg-div">
-                <svg width="auto" height="auto" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                 <path id="svg_20" d="m20.22599,25.00001l20.01948,-22.23302l-13.18441,0l-20.01948,22.23302l20.01948,22.233l13.18441,0l-20.01948,-22.233z"/>
-               </svg></div>
-            Keep shopping</div>
-        </a>
+        <app-keep-shopping></app-keep-shopping>
     </div>
     <ng-template #elseBlock >
         <h1>Your shoppingbag</h1>
         <h1 class="text-muted">Here are the items you selected</h1>
-        <a href="/Home"><div class="keep-shopping">
-            <div class="svg-div">
-                <svg width="auto" height="auto" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                 <path id="svg_20" d="m20.22599,25.00001l20.01948,-22.23302l-13.18441,0l-20.01948,22.23302l20.01948,22.233l13.18441,0l-20.01948,-22.233z"/>
-               </svg></div>
-            Keep shopping</div>
-        </a>
+        <app-keep-shopping></app-keep-shopping>
         <div class="row p-1 products" *ngFor="let item of ProductItemLenght(); index as i;">
             <a href="detail/{{item.productId}}" class="col-md-auto"><img class="thumbnail" src="/assets/{{productById(item.productId).image}}"></a> 
             <div class="col-3 mt-2 p-2"><a href="detail/{{item.productId}}" class="col name">{{productById(item.productId).name}}</a></div>

@@ -47,12 +47,13 @@ label > input[type="radio"] + *::before {
   vertical-align: bottom;
   width: 1rem;
   height: 1rem;
-  margin-bottom: 2px;
+  margin-bottom: 0.1rem;
   margin-right: 0.3rem;
   border-radius: 50%;
   border-style: solid;
   border-width: 0.15rem;
   border-color: gray;
+  transition: all 0.15s ease;
 }
 label > input[type="radio"]:checked + *::before {
   background: radial-gradient(#7ebb7e 0%, #7ebb7e 40%, transparent 50%, transparent);
@@ -60,4 +61,13 @@ label > input[type="radio"]:checked + *::before {
 }
 label > input[type="radio"]:checked + * {
   color: #273b27;
+}
+label > input[type="radio"] + * {
+  cursor: pointer;
+}
+label > input[type="radio"] + *:hover::before {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-bottom: 0rem;
+  margin-left: -0.1rem;
 }
