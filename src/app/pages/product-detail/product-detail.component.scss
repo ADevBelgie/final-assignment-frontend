@@ -1,22 +1,13 @@
-.box{
-    display: flex;
-    flex-flow: column;
-}
 .main{
     background-color: white;
     opacity: 0.8;
     padding: 0px 0px 2rem 0px;
     position: relative;
-    flex: 1 1;
 }
 .productIsland{
-    margin: 3rem;
-}
-.float-left{
-    float: left;
-    width: 60%;
+    padding: 3rem;
 }
 .big-thumbnail{
-    float: right;
-    width: 40%;
+    max-width: 500px;
+    max-height: 600px;
 }
