@@ -1,0 +1,27 @@
+.svg-icon{
+    margin: 0rem 0.5rem 0rem 0.5rem;
+    display: inline-block;
+    width: 35px;
+    cursor: pointer;
+}
+.nav-link div:nth-child(2){
+    opacity: 0.8;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    display: inline-block;
+    background-color: yellow;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.nav-link span{
+    position: relative;
+    margin: -1rem 0rem 0rem 0rem;
+    display: inline-block;
+    width: inherit;
+    height: inherit;
+    color: #334d33;
+    text-align: center;
+    vertical-align: middle;
+}

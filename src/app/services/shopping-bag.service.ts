@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { ShoppingBag } from 'src/models/shopping-bag';
 import { ShoppingItem } from 'src/models/shopping-item';
-import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,8 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 export class ShoppingBagService {
 
   private BaseUrl = 'https://localhost:44378/api';  // URL to web api
+  public shoppingItems: ShoppingItem[] = []; // Used in navbar
+  public _shoppingItems = new BehaviorSubject<ShoppingItem[]>([]); // Used in navbar
 
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -25,16 +26,36 @@ export class ShoppingBagService {
   constructor(
     private http: HttpClient) { }
 
+    getShoppingItemsObservable(): Observable<ShoppingItem[]>{
+      //return of(this.shoppingItems)
+      return this._shoppingItems.asObservable()
+    }
+
     /** GET shoppingbag from the server */
     getShoppingBag(): Observable<ShoppingBag> {
       this.CheckHeaders()
+      let shoppingBagTemp:ShoppingBag
       return this.http.get<ShoppingBag>(`${this.BaseUrl}/Shopping`, this.httpOptions)
         .pipe(
           tap(_ => this.log('fetched shoppingbag')),
-          catchError(this.handleError<ShoppingBag>('GetShoppingBag'))
+          catchError(this.handleError<ShoppingBag>('GetShoppingBag')),
+          map((x:ShoppingBag)=>{
+            this.shoppingItems = x.items
+            this._shoppingItems.next(x.items)
+            console.log(this.shoppingItems)
+            console.log(this._shoppingItems.value)
+            return x;
+          })
         );
     }
-    
+    /*
+    .pipe(map((user:any) => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user)); // user looks like  Object {token:"x", expiration "2021-11-04T17:31:01Z"}
+            this.userSubject.next(user);
+            return user;
+        }));
+     */
     // Create/ Add product with amount to shopping bag
     putShoppingItemToBag(productId:number, amountToAdd:number) {
       this.CheckHeaders()

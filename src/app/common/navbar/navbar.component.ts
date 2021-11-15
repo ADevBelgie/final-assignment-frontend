@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { ShoppingBagService } from 'src/app/services/shopping-bag.service';
+import { ShoppingItem } from 'src/models/shopping-item';
 
 import { AccountService } from '../../services/account.service';
 
@@ -13,7 +15,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   navigationSubscription; 
   public loggedIn:boolean
   public title = 'Sport Shop';
-
+  
+  
   constructor(
     private accountService: AccountService,
     private router: Router,) { 

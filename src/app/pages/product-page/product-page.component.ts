@@ -82,7 +82,4 @@ export class ProductPageComponent implements OnInit {
       this.shoppingBagService.putShoppingItemToBag(productId, 1).subscribe();
     }
   }
-  Refresh(){
-    setTimeout(()=>{ this.ngOnInit(); }, 200)
-  }
 }

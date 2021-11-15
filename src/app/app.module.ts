@@ -22,6 +22,7 @@ import { AboutCreatorComponent } from './pages/about-creator/about-creator.compo
 import { KeepShoppingComponent } from './buttons-icons/keep-shopping/keep-shopping.component';
 import { AddToCartComponent } from './buttons-icons/add-to-cart/add-to-cart.component';
 import { ProceedWithPaymentComponent } from './buttons-icons/proceed-with-payment/proceed-with-payment.component';
+import { ShoppingBagIconComponent } from './buttons-icons/shopping-bag-icon/shopping-bag-icon.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProceedWithPaymentComponent } from './buttons-icons/proceed-with-paymen
     AboutCreatorComponent,
     KeepShoppingComponent,
     AddToCartComponent,
-    ProceedWithPaymentComponent
+    ProceedWithPaymentComponent,
+    ShoppingBagIconComponent
   ],
   imports: [
     BrowserModule,
