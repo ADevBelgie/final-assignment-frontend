@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { subscribeOn } from 'rxjs/operators';
 import { Product } from 'src/models/product';
+import { ShoppingBag } from 'src/models/shopping-bag';
 import { ShoppingItem } from 'src/models/shopping-item';
 import { ProductService } from '../../services/product.service';
 import { ShoppingBagService } from '../../services/shopping-bag.service';
@@ -12,7 +13,8 @@ import { ShoppingBagService } from '../../services/shopping-bag.service';
   styleUrls: ['./shoppingbag.component.scss']
 })
 export class ShoppingbagComponent implements OnInit {
-  public shoppingItems: ShoppingItem[] = [];
+  public shoppingItems$: Observable<ShoppingItem[]>;
+  public shoppingBag$: Observable<ShoppingBag>;
   public products: Product[] = [];
  
   public amountOptions = [
@@ -31,7 +33,11 @@ export class ShoppingbagComponent implements OnInit {
   constructor(
     private shoppingBagService: ShoppingBagService,
     private productService: ProductService,
-  ) {   }
+  ) {  
+    this.shoppingBagService.getShoppingBag().subscribe()
+    this.shoppingItems$ = this.shoppingBagService.getShoppingItemsObservable()
+    this.shoppingBag$ = this.shoppingBagService.getShoppingBagObservable()
+  }
 
   ngOnInit(): void {
     this.getShoppingItems();
@@ -39,38 +45,23 @@ export class ShoppingbagComponent implements OnInit {
   submit(event: any, productId:number) {
     if(!isNaN(Number(event.target.value)) && typeof Number(event.target.value) === 'number'){
       // Change item amount from local and from backend
-      var sItem = this.shoppingItems.find(x => x.productId == productId)
-      var index = this.shoppingItems.findIndex(x => x.productId == productId)
-      if (index !== -1 && sItem) {
-        sItem.amount = Number(event.target.value)
-        this.shoppingItems[index] = sItem;
-      }
-      this.shoppingBagService.putSetAmountShoppingItemToBag( productId, Number(event.target.value)).subscribe(()=>location.reload())
+      this.shoppingBagService.putSetAmountShoppingItemToBag( productId, Number(event.target.value))
     }
     
   }
   getShoppingItems() {
     this.shoppingBagService.getShoppingBag() // Get only 1 page
     .subscribe(shoppingBag => {
-      this.shoppingItems = shoppingBag.items; // shoppingBag.items is an Array(3) [ {…}, {…}, {…} ]
-      this.shoppingItems.forEach(item => {
+      shoppingBag.items.forEach(item => {
         this.productService.getProduct(item.productId).subscribe(product => {
           this.products.push(product)
         });
       });
     });
   }
-  ProductItemLenght(): ShoppingItem[] {
-    if(this.shoppingItems.length == this.products.length){
-      return this.shoppingItems;
-    }
-    return []
-  }
-  ProductItemLenghtBool(): boolean{
-    return this.shoppingItems.length == 0
-  }
   productById(productId:number): Product{
     let product = this.products.find(x => x.productId == productId);
+    
     if(!product){
       throw new Error("");
     }
@@ -78,15 +69,6 @@ export class ShoppingbagComponent implements OnInit {
   }
   DeleteSHoppingItem(productId:number){
     // Delete item from local and from backend
-    var index = this.shoppingItems.findIndex(x => x.productId == productId)
-    if (index !== -1) {
-      this.shoppingItems.splice(index, 1);
-    }
-    var index = this.products.findIndex(x => x.productId == productId)
-    if (index !== -1) {
-      this.products.splice(index, 1);
-    }
-
     this.shoppingBagService.deleteShoppingItem(productId)
   }
 }

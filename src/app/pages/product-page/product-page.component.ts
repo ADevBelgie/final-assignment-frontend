@@ -79,7 +79,7 @@ export class ProductPageComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     else{
-      this.shoppingBagService.putShoppingItemToBag(productId, 1).subscribe();
+      this.shoppingBagService.putShoppingItemToBag(productId, 1);
     }
   }
 }

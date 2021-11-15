@@ -19,7 +19,7 @@ export class ShoppingBagIconComponent implements OnInit {
     ) { 
     if (this.CheckLoggedIn()) {
       this.shoppingBagService.getShoppingBag().subscribe()
-     this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
+      this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
     }
     else{
       this.shoppingItems = of([])

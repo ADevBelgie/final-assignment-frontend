@@ -13,8 +13,8 @@ import { ShoppingItem } from 'src/models/shopping-item';
 export class ShoppingBagService {
 
   private BaseUrl = 'https://localhost:44378/api';  // URL to web api
-  public shoppingItems: ShoppingItem[] = []; // Used in navbar
-  public _shoppingItems = new BehaviorSubject<ShoppingItem[]>([]); // Used in navbar
+  public shoppingItems = new BehaviorSubject<ShoppingItem[]>([]); // Used in navbar, shoppingbag...
+  public shoppingBag = new BehaviorSubject<ShoppingBag>(null!); // Used in shoppingbag...
 
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -27,10 +27,12 @@ export class ShoppingBagService {
     private http: HttpClient) { }
 
     getShoppingItemsObservable(): Observable<ShoppingItem[]>{
-      //return of(this.shoppingItems)
-      return this._shoppingItems.asObservable()
+      return this.shoppingItems.asObservable()
     }
-
+    getShoppingBagObservable(): Observable<ShoppingBag>{
+      return this.shoppingBag.asObservable()
+    }
+    
     /** GET shoppingbag from the server */
     getShoppingBag(): Observable<ShoppingBag> {
       this.CheckHeaders()
@@ -40,35 +42,34 @@ export class ShoppingBagService {
           tap(_ => this.log('fetched shoppingbag')),
           catchError(this.handleError<ShoppingBag>('GetShoppingBag')),
           map((x:ShoppingBag)=>{
-            this.shoppingItems = x.items
-            this._shoppingItems.next(x.items)
-            console.log(this.shoppingItems)
-            console.log(this._shoppingItems.value)
+            this.shoppingItems.next(x.items)
+            this.shoppingBag.next(x)
             return x;
           })
         );
     }
-    /*
-    .pipe(map((user:any) => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user)); // user looks like  Object {token:"x", expiration "2021-11-04T17:31:01Z"}
-            this.userSubject.next(user);
-            return user;
-        }));
-     */
     // Create/ Add product with amount to shopping bag
     putShoppingItemToBag(productId:number, amountToAdd:number) {
       this.CheckHeaders()
       return this.http.put<any>(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}`, {}, this.httpOptions)// empty body
+      .subscribe(()=>
+        this.getShoppingBag()
+      )
     }
     // Change to set amount in shoppingbag
     putSetAmountShoppingItemToBag(productId:number, amountToAdd:number) {
-      return this.http.put(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}&setAmount=true`, {}, this.httpOptions)// empty body
+      return this.http.put<any>(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}&setAmount=true`, {}, this.httpOptions)// empty body
+      .subscribe(()=>
+        this.getShoppingBag()
+      )
     }
     // Remove Product from shoppingbag
     deleteShoppingItem(productId:number){
-      return this.http.delete(`${this.BaseUrl}/Shopping?productId=${productId}`, this.httpOptions)// empty body
-      .subscribe();
+      console.log("delete item")
+      return this.http.delete<ShoppingBag>(`${this.BaseUrl}/Shopping?productId=${productId}`, this.httpOptions)// empty body
+      .subscribe(()=>
+        this.getShoppingBag()
+      )
     }
     /**
    * Handle Http operation that failed.

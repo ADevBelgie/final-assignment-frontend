@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-inverse navbar-fixed-top colornav">
       <app-shop-icon></app-shop-icon>
-      <ul *ngIf="loggedIn" class="navbar-nav" style="margin-left: 1rem;margin-right: auto;">
+      <ul *ngIf="((user$ | async) | json) != ({} | json)" class="navbar-nav" style="margin-left: 1rem;margin-right: auto;">
         <li class="nav-item">
           <a class="nav-link" href="#">Product Admin</a>
         </li>
@@ -14,12 +14,12 @@
       <!-- Login/ Register & Shoppingbag -->
       <ul class="navbar-nav" style="margin-left: auto;margin-right: 4rem;">
     
-        <li *ngIf="!loggedIn; else elseBlock" class="nav-item">
-          <a class="nav-link" href="/login">Login </a>
+        <li *ngIf="((user$ | async) | json) != ({} | json); else elseBlock" class="nav-item">
+          <a class="nav-link" (click)="Logout()">Logout </a>
         </li>
         <ng-template #elseBlock>
           <li class="nav-item">
-            <a class="nav-link" (click)="Logout()">Logout </a>
+            <a class="nav-link" href="/login">Login </a>
           </li></ng-template>
     
         <li class="nav-item">

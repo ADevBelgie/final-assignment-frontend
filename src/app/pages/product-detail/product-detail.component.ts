@@ -41,7 +41,7 @@ export class ProductDetailComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     else{
-      this.shoppingBagService.putShoppingItemToBag(this.routeId, 1).subscribe();
+      this.shoppingBagService.putShoppingItemToBag(this.routeId, 1);
     }
   }
 }
