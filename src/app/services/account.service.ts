@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/models/user';
+import { ShoppingBagService } from './shopping-bag.service';
 
 // Source
 // https://stackblitz.com/edit/angular-10-registration-login-example?file=src%2Fapp%2F_services%2Faccount.service.ts
@@ -25,7 +26,8 @@ export class AccountService {
 
   constructor(
     private router: Router,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private shoppingBagService: ShoppingBagService) {
       this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || '{}'));
       this.user = this.userSubject.asObservable();
     }
@@ -43,7 +45,8 @@ export class AccountService {
         .pipe(map((user:any) => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user)); // user looks like  Object {token:"x", expiration "2021-11-04T17:31:01Z"}
-            this.userSubject.next(user);
+            this.userSubject.next(user)
+            this.shoppingBagService.getShoppingBag().subscribe() // get shoppingbag once logged in
             return user;
         }));
   }

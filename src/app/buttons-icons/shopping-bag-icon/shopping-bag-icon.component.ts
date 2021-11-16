@@ -20,18 +20,11 @@ export class ShoppingBagIconComponent implements OnInit {
     private router: Router,
     private location: Location
     ) { 
+      this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
       
-    if (!this.CheckLoggedIn()) {
-      this.shoppingItems = of([])
-    }
-    else{
       if(this.location.path() != "/shoppingbag"){
         this.shoppingBagService.getShoppingBag().subscribe()
       }
-      
-      
-      this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
-    }
   }
 
   ngOnInit(): void {

@@ -24,7 +24,8 @@ export class ShoppingBagService {
   };
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    ) { }
 
     getShoppingItemsObservable(): Observable<ShoppingItem[]>{
       return this.shoppingItems.asObservable()
@@ -44,6 +45,7 @@ export class ShoppingBagService {
           map((x:ShoppingBag)=>{
             this.shoppingItems.next(x.items)
             this.shoppingBag.next(x)
+            console.log("shopping")
             return x;
           })
         );
@@ -97,9 +99,11 @@ export class ShoppingBagService {
   }
   /** add auth when not already added in headers */
   CheckHeaders(){
-    if(this.httpOptions.headers.get('Authorization') == null){
-      const token = JSON.parse(localStorage.getItem('user') || "").token
-      this.httpOptions.headers = this.httpOptions.headers.append('Authorization' , `Bearer ${token}`);
+    if(localStorage.getItem('user') != null){
+      if(this.httpOptions.headers.get('Authorization') == null){
+        const token = JSON.parse(localStorage.getItem('user') || "").token
+        this.httpOptions.headers = this.httpOptions.headers.append('Authorization' , `Bearer ${token}`);
+      }
     }
     
   }
