@@ -45,7 +45,6 @@ export class ShoppingBagService {
           map((x:ShoppingBag)=>{
             this.shoppingItems.next(x.items)
             this.shoppingBag.next(x)
-            console.log("shopping")
             return x;
           })
         );
