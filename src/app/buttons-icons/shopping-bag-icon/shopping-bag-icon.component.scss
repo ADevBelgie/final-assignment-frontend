@@ -4,7 +4,17 @@
     width: 35px;
     cursor: pointer;
 }
-.nav-link div:nth-child(2){
+.nav-link-value span{
+    position: relative;
+    margin: -1rem 0rem 0rem 0rem;
+    display: inline-block;
+    width: inherit;
+    height: inherit;
+    color: #334d33;
+    text-align: center;
+    vertical-align: middle;
+}
+.nav-link-value{
     opacity: 0.8;
     position: absolute;
     top: -2px;
@@ -15,13 +25,4 @@
     width: 1.5rem;
     height: 1.5rem;
 }
-.nav-link span{
-    position: relative;
-    margin: -1rem 0rem 0rem 0rem;
-    display: inline-block;
-    width: inherit;
-    height: inherit;
-    color: #334d33;
-    text-align: center;
-    vertical-align: middle;
-}
+

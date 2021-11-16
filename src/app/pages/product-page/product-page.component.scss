@@ -8,7 +8,8 @@
   margin: .5rem;
   border-radius: 5px;
   padding: .5rem;
-  background-color: rgb(239, 240, 248);
+  //background-color: rgb(239, 240, 248);
+  background-color: #abc3e1;
   border:solid grey 1px;
 }
 .pagination{
@@ -44,6 +45,7 @@ h2{
 .add-to-cart{
   text-decoration: underline;
   cursor: pointer;
+  color: darkblue;
 }
 .active a{
   background-color: #7ebb7e;
@@ -73,8 +75,8 @@ label > input[type="radio"] + *::before {
   transition: all 0.15s ease;
 }
 label > input[type="radio"]:checked + *::before {
-  background: radial-gradient(#7ebb7e 0%, #7ebb7e 40%, transparent 50%, transparent);
-  border-color: #7ebb7e;
+  background: radial-gradient(#2c442c 0%, #2c442c 40%, transparent 50%, transparent);
+  border-color: #2c442c;
 }
 label > input[type="radio"]:checked + * {
   color: #273b27;
@@ -89,18 +91,19 @@ label > input[type="radio"] + *:hover::before {
   margin-left: -0.1rem;
 }
 #gif-shopping{
-  display: inline-block;
-  background-color: rgb(239, 240, 248);
+  display: block;
+  
   padding: 4px;
   border-radius: 5px;
-  margin: 0rem 0rem 1rem 0rem;
+  margin: 0rem auto 1rem auto;
 }
 #gif-shopping > img{
-  display: inline-block;
-  width: 240px;
+  display: block;
+  width: 140px;
   height: auto;
+  margin: auto;
 }
-@media screen and (max-width: 1400px){
+@media screen and (max-width: 1150px){
   #gif-shopping{
     display: none;
   }

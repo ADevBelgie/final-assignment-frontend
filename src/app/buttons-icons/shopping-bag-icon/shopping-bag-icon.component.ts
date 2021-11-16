@@ -21,6 +21,9 @@ export class ShoppingBagIconComponent implements OnInit {
     private location: Location
     ) { 
       this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
+      this.shoppingItems.subscribe( data => {
+        this.cssUpdate(data);
+       });
       
       if(this.location.path() != "/shoppingbag"){
         this.shoppingBagService.getShoppingBag().subscribe()
@@ -32,5 +35,21 @@ export class ShoppingBagIconComponent implements OnInit {
   CheckLoggedIn(this: any): boolean {
     const user = this.accountService.userValue
     return !(user && (Object.keys(user).length === 0)); // Returns true when user object is not empty
+  }
+  cssUpdate(shoppingItem:ShoppingItem[]){
+    // make the icon next to cart flikker
+    if(shoppingItem.length > 0){
+      let navLinkValue = document.getElementsByClassName('nav-link-value') as HTMLCollectionOf<HTMLElement>;
+      console.log(navLinkValue[0])
+      if (navLinkValue.length != 0) {
+        navLinkValue[0].style.transition = "cubic-bezier(.29,2,.71,2) all 0.5s"
+        navLinkValue[0].style.color = "yellow"
+        navLinkValue[0].style.boxShadow = "0px 0px 5px 5px"
+        setTimeout(()=>{ 
+          navLinkValue[0].style.transition = "ease all 0.5s"
+          navLinkValue[0].style.boxShadow = "0px 0px 0px 0px"
+         }, 500)
+      }
+    }
   }
 }

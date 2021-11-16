@@ -50,7 +50,7 @@ a:hover{
 }
 .nav-logo:hover #eye2{
   height: 80px;
-    transform: translate(-45px,-13px);
+  transform: translate(-45px,-13px);
 }
 .navfiller{
   position: relative;
@@ -58,4 +58,14 @@ a:hover{
   height: 76px;
   flex: 0 0 76px;
   z-index: -1;
+}
+.sport-icon{
+  width: 50px;
+  margin: 0rem 2rem;
+  filter: invert(11%) sepia(2%) saturate(2155%) hue-rotate(131deg) brightness(100%) contrast(96%);
+}
+@media screen and (max-width: 1400px){
+  .sport-icons{
+    display: none;
+  }
 }

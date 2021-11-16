@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-inverse navbar-fixed-top colornav">
       <app-shop-icon></app-shop-icon>
-      <ul *ngIf="((user$ | async) | json) != ({} | json)" class="navbar-nav" style="margin-left: 1rem;margin-right: auto;">
+      <ul *ngIf="((user$ | async) | json) != ({} | json); else elseBlock2" class="navbar-nav" style="margin-left: 1rem;margin-right: auto;">
         <li class="nav-item">
           <a class="nav-link" href="#">Product Admin</a>
         </li>
@@ -10,7 +10,21 @@
           <a class="nav-link" href="#">User Admin</a>
         </li>
       </ul>
-    
+      <ng-template #elseBlock2>
+        <div style="margin-right: auto;">
+        </div>
+      </ng-template>
+      <ul class="navbar-nav sport-icons">
+        <li class="nav-item"> 
+          <img class="sport-icon" src="/assets/tent.png">
+        </li>
+        <li class="nav-item"> 
+          <img class="sport-icon" src="/assets/shoe.png">
+        </li>
+        <li class="nav-item"> 
+          <img class="sport-icon" src="/assets/wheel.png">
+        </li>
+      </ul>
       <!-- Login/ Register & Shoppingbag -->
       <ul class="navbar-nav" style="margin-left: auto;margin-right: 4rem;">
     
