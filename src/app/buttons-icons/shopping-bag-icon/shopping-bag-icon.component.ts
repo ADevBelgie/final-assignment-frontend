@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { ShoppingBagService } from 'src/app/services/shopping-bag.service';
 import { ShoppingItem } from 'src/models/shopping-item';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-shopping-bag-icon',
   templateUrl: './shopping-bag-icon.component.html',
@@ -16,15 +17,21 @@ export class ShoppingBagIconComponent implements OnInit {
   constructor(
     private shoppingBagService: ShoppingBagService,
     private accountService: AccountService,
+    private router: Router,
+    private location: Location
     ) { 
-    if (this.CheckLoggedIn()) {
-      this.shoppingBagService.getShoppingBag().subscribe()
-      this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
-    }
-    else{
+      
+    if (!this.CheckLoggedIn()) {
       this.shoppingItems = of([])
     }
-     
+    else{
+      if(this.location.path() != "/shoppingbag"){
+        this.shoppingBagService.getShoppingBag().subscribe()
+      }
+      
+      
+      this.shoppingItems = this.shoppingBagService.getShoppingItemsObservable()
+    }
   }
 
   ngOnInit(): void {

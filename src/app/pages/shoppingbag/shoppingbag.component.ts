@@ -69,6 +69,10 @@ export class ShoppingbagComponent implements OnInit {
   }
   DeleteSHoppingItem(productId:number){
     // Delete item from local and from backend
+    const index = this.products.indexOf(this.products.find(x => x.productId == productId)!);
+    if (index > -1) {
+      this.products.splice(index, 1);
+    }
     this.shoppingBagService.deleteShoppingItem(productId)
   }
 }

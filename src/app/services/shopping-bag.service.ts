@@ -52,23 +52,23 @@ export class ShoppingBagService {
     putShoppingItemToBag(productId:number, amountToAdd:number) {
       this.CheckHeaders()
       return this.http.put<any>(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}`, {}, this.httpOptions)// empty body
-      .subscribe(()=>
-        this.getShoppingBag()
-      )
+      .subscribe(()=>{
+        this.getShoppingBag().subscribe()
+      })
     }
     // Change to set amount in shoppingbag
     putSetAmountShoppingItemToBag(productId:number, amountToAdd:number) {
       return this.http.put<any>(`${this.BaseUrl}/Shopping?productId=${productId}&amount=${amountToAdd}&setAmount=true`, {}, this.httpOptions)// empty body
-      .subscribe(()=>
-        this.getShoppingBag()
-      )
+      .subscribe(()=>{
+        this.getShoppingBag().subscribe()
+      })
     }
     // Remove Product from shoppingbag
     deleteShoppingItem(productId:number){
       console.log("delete item")
       return this.http.delete<ShoppingBag>(`${this.BaseUrl}/Shopping?productId=${productId}`, this.httpOptions)// empty body
       .subscribe(()=>
-        this.getShoppingBag()
+        this.getShoppingBag().subscribe()
       )
     }
     /**
