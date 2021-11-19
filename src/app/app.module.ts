@@ -8,7 +8,7 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material/radio';
+
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -23,7 +23,7 @@ import { KeepShoppingComponent } from './buttons-icons/keep-shopping/keep-shoppi
 import { AddToCartComponent } from './buttons-icons/add-to-cart/add-to-cart.component';
 import { ProceedWithPaymentComponent } from './buttons-icons/proceed-with-payment/proceed-with-payment.component';
 import { ShoppingBagIconComponent } from './buttons-icons/shopping-bag-icon/shopping-bag-icon.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfCvComponent } from './buttons-icons/pdf-cv/pdf-cv.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,16 +41,15 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     KeepShoppingComponent,
     AddToCartComponent,
     ProceedWithPaymentComponent,
-    ShoppingBagIconComponent
+    ShoppingBagIconComponent,
+    PdfCvComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatRadioModule,
-    PdfViewerModule
+    ReactiveFormsModule
   ],
   providers: [
     ProductService,
