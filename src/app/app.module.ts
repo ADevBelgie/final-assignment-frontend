@@ -23,7 +23,7 @@ import { KeepShoppingComponent } from './buttons-icons/keep-shopping/keep-shoppi
 import { AddToCartComponent } from './buttons-icons/add-to-cart/add-to-cart.component';
 import { ProceedWithPaymentComponent } from './buttons-icons/proceed-with-payment/proceed-with-payment.component';
 import { ShoppingBagIconComponent } from './buttons-icons/shopping-bag-icon/shopping-bag-icon.component';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +49,8 @@ import { ShoppingBagIconComponent } from './buttons-icons/shopping-bag-icon/shop
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    PdfViewerModule
   ],
   providers: [
     ProductService,
