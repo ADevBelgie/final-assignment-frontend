@@ -1,0 +1,40 @@
+.main{
+    background-color: white;
+    opacity: 0.8;
+    padding: 0px 0px 2rem 0px;
+    position: relative;
+}
+.content-about{
+    padding: 3rem 10rem;
+}
+.content-about h1{
+    text-align: center;
+    font-size: 2.5rem;
+}
+.content-about h2{
+    font-size: 1.8rem;
+}
+.content-about p{
+    font-size: 1rem;
+}
+.svg-icon{
+    margin: auto 0.5rem;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+ul li{
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+    background-color: #abc3e1;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: solid 0.1rem rgb(56, 56, 56);
+}
+ul li a{
+    margin-right: 1rem;
+}
+ul li p{
+    margin: 0px;
+}
