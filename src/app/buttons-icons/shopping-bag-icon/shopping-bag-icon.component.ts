@@ -40,7 +40,6 @@ export class ShoppingBagIconComponent implements OnInit {
     // make the icon next to cart flikker
     if(shoppingItem.length > 0){
       let navLinkValue = document.getElementsByClassName('nav-link-value') as HTMLCollectionOf<HTMLElement>;
-      console.log(navLinkValue[0])
       if (navLinkValue.length != 0) {
         navLinkValue[0].style.transition = "cubic-bezier(.29,2,.71,2) all 0.5s"
         navLinkValue[0].style.color = "yellow"
