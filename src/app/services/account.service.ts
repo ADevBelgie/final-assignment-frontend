@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { User } from 'src/models/user';
 import { ShoppingBagService } from './shopping-bag.service';
 
@@ -16,6 +16,7 @@ export class AccountService {
   private BaseUrl = 'https://localhost:44378/api/Account';  // URL to web api
   private userSubject: BehaviorSubject<User>; 
   public user: Observable<User>;
+  public users = new BehaviorSubject<User[]>([]);
 
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -38,7 +39,9 @@ export class AccountService {
   public get userObservable(): Observable<User> {
     return this.user;
   }
-
+  getUsersObservable(): Observable<User[]>{
+    return this.users.asObservable()
+  }
   login(login: User) {
     this.log('Attempting login')
     return this.http.post(`${this.BaseUrl}/login`, login, this.httpOptions)
@@ -64,8 +67,21 @@ export class AccountService {
     return this.http.post(`${this.BaseUrl}/register`, user);
   }
 
-  getAll() {
-    return this.http.get<User[]>(`${this.BaseUrl}/users`);
+  getAll():Observable<User[]>{
+    console.log("GetAll() entered")
+    
+    this.CheckHeaders()/** add auth **/
+    console.log(this.httpOptions)
+    return this.http.get<User[]>(`${this.BaseUrl}/logins`, this.httpOptions)
+      .pipe(
+        tap(_ => this.log('fetched users')),
+        catchError(this.handleError<User[]>('GetAll()')),
+        map((x:User[])=>{
+          console.log("users: "+x)
+          this.users.next(x)
+          return x;
+        })
+      );
   }
 
   getById(id: string) {
@@ -88,4 +104,26 @@ export class AccountService {
   console.log(`AccountServiceService: ${message}`);
   }
 
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+  /** add auth when not already added in headers */
+  CheckHeaders(){
+    if(localStorage.getItem('user') != null){
+      if(this.httpOptions.headers.get('Authorization') == null){
+        const token = JSON.parse(localStorage.getItem('user') || "").token
+        this.httpOptions.headers = this.httpOptions.headers.append('Authorization' , `Bearer ${token}`);
+      }
+    }
+  }
 }

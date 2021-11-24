@@ -104,6 +104,5 @@ export class ShoppingBagService {
         this.httpOptions.headers = this.httpOptions.headers.append('Authorization' , `Bearer ${token}`);
       }
     }
-    
   }
 }

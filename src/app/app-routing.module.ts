@@ -9,6 +9,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ShoppingbagComponent } from './pages/shoppingbag/shoppingbag.component';
+import { AdminAreaUsersComponent } from './pages/admin-area-users/admin-area-users.component';
 
 const routes: Routes = [
   { path: 'Home', component: ProductPageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'about-shop', component: AboutShopComponent },
   { path: 'about-creator', component: AboutCreatorComponent },
   { path: 'shoppingbag', component: ShoppingbagComponent, canActivate: [AuthGuard] },
+  { path: 'admin-area-users', component: AdminAreaUsersComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'Home'},
 ];
 @NgModule({

@@ -24,6 +24,7 @@ import { AddToCartComponent } from './buttons-icons/add-to-cart/add-to-cart.comp
 import { ProceedWithPaymentComponent } from './buttons-icons/proceed-with-payment/proceed-with-payment.component';
 import { ShoppingBagIconComponent } from './buttons-icons/shopping-bag-icon/shopping-bag-icon.component';
 import { PdfCvComponent } from './buttons-icons/pdf-cv/pdf-cv.component';
+import { AdminAreaUsersComponent } from './pages/admin-area-users/admin-area-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { PdfCvComponent } from './buttons-icons/pdf-cv/pdf-cv.component';
     AddToCartComponent,
     ProceedWithPaymentComponent,
     ShoppingBagIconComponent,
-    PdfCvComponent
+    PdfCvComponent,
+    AdminAreaUsersComponent
   ],
   imports: [
     BrowserModule,
