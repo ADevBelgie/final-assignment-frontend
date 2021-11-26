@@ -3,6 +3,21 @@
         <h1>Admin Area</h1>
         <h2>List of users</h2>
         
-        <p *ngFor="let user of users$ |async">{{user.userName}}</p>
+        <div class="row header">
+            <div class="col-2">Username</div>
+            <div class="col">Email</div>
+            <div class="col-2">Shoppingbag ID</div>
+            <div class="col">Phone number</div>
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+        </div>
+        <div *ngFor="let user of users$ |async" class="row">
+            <div class="col-2">{{user.userName}}</div>
+            <div class="col">{{user.email}}</div>
+            <div class="col-2">{{user.shoppingBagId}}</div>
+            <div class="col">{{user.phoneNumber}}</div>
+            <div class="col-1 delete"><a (click)="delete(user.userName)">Delete</a></div>
+            <div class="col-1 edit"><a (click)="edit(user.userName)">Edit</a></div>
+        </div>
     </div>
 </div>

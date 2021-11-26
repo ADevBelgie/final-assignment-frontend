@@ -10,9 +10,11 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { RegisterComponent } from './pages/register/register.component';
 import { ShoppingbagComponent } from './pages/shoppingbag/shoppingbag.component';
 import { AdminAreaUsersComponent } from './pages/admin-area-users/admin-area-users.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
-  { path: 'Home', component: ProductPageComponent },
+  { path: 'home', component: HomePageComponent },
+  { path: 'product', component: ProductPageComponent },
   { path: 'detail/:id', component: ProductDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -20,7 +22,7 @@ const routes: Routes = [
   { path: 'about-creator', component: AboutCreatorComponent },
   { path: 'shoppingbag', component: ShoppingbagComponent, canActivate: [AuthGuard] },
   { path: 'admin-area-users', component: AdminAreaUsersComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'Home'},
+  { path: '**', redirectTo: 'home'},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],

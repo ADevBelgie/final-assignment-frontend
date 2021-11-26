@@ -68,16 +68,12 @@ export class AccountService {
   }
 
   getAll():Observable<User[]>{
-    console.log("GetAll() entered")
-    
     this.CheckHeaders()/** add auth **/
-    console.log(this.httpOptions)
     return this.http.get<User[]>(`${this.BaseUrl}/logins`, this.httpOptions)
       .pipe(
         tap(_ => this.log('fetched users')),
         catchError(this.handleError<User[]>('GetAll()')),
         map((x:User[])=>{
-          console.log("users: "+x)
           this.users.next(x)
           return x;
         })

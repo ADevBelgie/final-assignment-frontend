@@ -53,7 +53,10 @@ export class LoginComponent implements OnInit {
         userName: this.f.username.value,
         passwordHash: this.f.password.value,
         token: undefined,
-        expiration: undefined
+        expiration: undefined,
+        email:undefined,
+        phoneNumber:undefined,
+        shoppingBagId:undefined
       }
       this.accountService.login(loginUser)
           .pipe(first())

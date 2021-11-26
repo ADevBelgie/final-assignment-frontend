@@ -14,10 +14,17 @@ export class AdminAreaUsersComponent implements OnInit {
     private accountService: AccountService
   ) {
     this.users$ = this.accountService.getUsersObservable()
-    this.accountService.getAll().subscribe()
+    this.accountService.getAll().subscribe((x)=>{
+      console.log(x)
+    })
    }
 
   ngOnInit(): void {
   }
-
+  delete(userName:string){
+    console.log("Delete: "+userName)
+  }
+  edit(userName:string){
+    console.log("Edit: "+userName)
+  }
 }
