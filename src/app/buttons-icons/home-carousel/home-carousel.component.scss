@@ -1,6 +1,8 @@
 .image-carousel{
     background-color: white;
     height: 70vh;
+    padding: 0px;
+    margin: 0px;
     position: relative;
 }
 .image-carousel>div{
@@ -21,6 +23,7 @@
     width: 50%;
 }
 .button-right>div, .button-left>div{
+    cursor: pointer;
     background-color: grey;
     opacity: 0.75;
     border-radius: 50%;

@@ -20,9 +20,12 @@ export class HomeCarouselComponent implements OnInit {
     "./assets/camping-outside.jpeg",
     "./assets/treadmills.png",
     "./assets/sport-shoes.png",
-    "./assets/street-light.jpg"
+    "./assets/yogo-mat.png",
+    "./assets/roller-banner.png",
+    "./assets/travel-bag.png"
   ]
   public selectedItem:number = 0
+  buttonClickable: boolean = true;
 
   constructor() { }
 
@@ -30,50 +33,56 @@ export class HomeCarouselComponent implements OnInit {
     this.loadedImages = this.carouselItems.slice(this.startLoadedImages,this.startLoadedImages+3)
   }
   right(){
-    // calculate left most image
-    let leftMostImage = this.startLoadedImages
-    if (this.carouselItems.length > this.startLoadedImages+1) {
-      this.startLoadedImages++
+    if (this.buttonClickable) {
+      this.buttonClickable = false;
+      // calculate left most image
+      let leftMostImage = this.startLoadedImages
+      if (this.carouselItems.length > this.startLoadedImages+1) {
+        this.startLoadedImages++
+      }
+      else{
+        this.startLoadedImages = 0
+      }
+      // rotate loadedImages[] to right and fill empty space with items from carouselItems[]
+      this.loadedImages[0] = this.carouselItems[this.startLoadedImages]
+
+      let centerImage = (this.startLoadedImages + 1) % this.carouselItems.length;
+      this.loadedImages[1] = this.carouselItems[centerImage]
+
+      let rightImage = (this.startLoadedImages + 2) % this.carouselItems.length
+      this.loadedImages[2] = this.carouselItems[rightImage]
+
+      // Change images in DOM
+      this.addImage("right");
+      this.removeImage(leftMostImage);
+      this.cssUpdate(centerImage, this.startLoadedImages, "toLeft");
     }
-    else{
-      this.startLoadedImages = 0
-    }
-    // rotate loadedImages[] to right and fill empty space with items from carouselItems[]
-    this.loadedImages[0] = this.carouselItems[this.startLoadedImages]
-
-    let centerImage = (this.startLoadedImages + 1) % this.carouselItems.length;
-    this.loadedImages[1] = this.carouselItems[centerImage]
-
-    let rightImage = (this.startLoadedImages + 2) % this.carouselItems.length
-    this.loadedImages[2] = this.carouselItems[rightImage]
-
-    // Change images in DOM
-    this.addImage("right");
-    this.removeImage(leftMostImage);
-    this.cssUpdate(centerImage, this.startLoadedImages, "toLeft");
   }
   left(){
-    // calculate right most image
-    let rightMostImage = (this.startLoadedImages + 2) % this.carouselItems.length
-    if (0 < this.startLoadedImages) {
-      this.startLoadedImages--
-    }
-    else{
-      this.startLoadedImages = this.carouselItems.length-1
-    }
-    // rotate loadedImages[] to right and fill empty space with items from carouselItems[]
-    this.loadedImages[0] = this.carouselItems[this.startLoadedImages]
+    if (this.buttonClickable) {
+      this.buttonClickable = false;
+      // calculate right most image
+      let rightMostImage = (this.startLoadedImages + 2) % this.carouselItems.length
+      if (0 < this.startLoadedImages) {
+        this.startLoadedImages--
+      }
+      else{
+        this.startLoadedImages = this.carouselItems.length-1
+      }
+      // rotate loadedImages[] to right and fill empty space with items from carouselItems[]
+      this.loadedImages[0] = this.carouselItems[this.startLoadedImages]
 
-    let centerImage = (this.startLoadedImages + 1) % this.carouselItems.length;
-    this.loadedImages[1] = this.carouselItems[centerImage]
-    
-    let rightImage = (this.startLoadedImages + 2) % this.carouselItems.length
-    this.loadedImages[2] = this.carouselItems[rightImage]
-    
-    // Change images in DOM
-    this.addImage("left");
-    this.removeImage(rightMostImage);
-    this.cssUpdate(centerImage, rightImage, "toRight");
+      let centerImage = (this.startLoadedImages + 1) % this.carouselItems.length;
+      this.loadedImages[1] = this.carouselItems[centerImage]
+      
+      let rightImage = (this.startLoadedImages + 2) % this.carouselItems.length
+      this.loadedImages[2] = this.carouselItems[rightImage]
+      
+      // Change images in DOM
+      this.addImage("left");
+      this.removeImage(rightMostImage);
+      this.cssUpdate(centerImage, rightImage, "toRight");
+    }
   }
   addImage(direction:string){
     /* adding new image to carousel dom
@@ -138,7 +147,8 @@ export class HomeCarouselComponent implements OnInit {
       imageToSideHTML.style.right="100%"
     }
     setTimeout(()=>{ 
-
-      }, 500)
+      this.buttonClickable = true;
+      }, 750)
   }
 }
+
