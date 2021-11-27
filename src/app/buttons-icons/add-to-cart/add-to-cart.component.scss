@@ -2,9 +2,9 @@
     display: inline-block;
 }
 .container-cart{
-    background-color: #7ebb7e;
+    background-color: var(--green-color);
     border-radius: 2px;
-    border: solid #003437 0.3rem;
+    border: solid var(--dark-green-color) 0.3rem;
     margin: 0.2rem;
 }
 .container-cart:hover{

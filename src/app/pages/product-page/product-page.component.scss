@@ -9,7 +9,7 @@
   border-radius: 5px;
   padding: .5rem;
   //background-color: rgb(239, 240, 248);
-  background-color: #abc3e1;
+  background-color: var(--sub-theme-color);
   border:solid grey 1px;
 }
 .pagination{
@@ -48,8 +48,8 @@ h2{
   color: darkblue;
 }
 .active a{
-  background-color: #7ebb7e;
-  border: solid 1px #7ebb7e;
+  background-color: var(--green-color);
+  border: solid 1px var(--green-color);
 }
 .page-link{
   color: #2daf2d;

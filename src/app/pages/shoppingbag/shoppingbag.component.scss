@@ -31,7 +31,7 @@ h1{
     display: inline-block;
     padding: 0.5rem 0.7rem 0.5rem 0.5rem;
     border-radius: 2px;
-    border: solid #003437 0.3rem;
+    border: solid var(--dark-green-color) 0.3rem;
     color: var(--bs-body-color);
     font-weight: bold;
     margin-bottom: 2rem;
@@ -47,7 +47,7 @@ h1{
     display: inline-block;
 }
 .keep-shopping svg{
-    fill: #003437;
+    fill: var(--dark-green-color);
 }
 .products{
     border-bottom: solid grey 2px;
@@ -58,12 +58,12 @@ h1{
     position: relative;
     display: inline-block;
     background-color: white;
-    border: solid #003437 0.2rem;
+    border: solid var(--dark-green-color) 0.2rem;
     width: 3rem;
 }
 .amount+select option{
     background-color: white;
-    border: solid #003437 0.2rem;
+    border: solid var(--dark-green-color) 0.2rem;
     width: 4rem;
 }
 .delete{
@@ -85,7 +85,7 @@ h1{
 .checkout{
     margin: 2rem 0rem 0rem 0rem;
     padding: 1rem 1rem 1rem 1rem;
-    background-color: #e0ffe4;
+    background-color: var(--light-green-color);
 }
 .text-right{
     text-align: right;
@@ -95,7 +95,7 @@ h1{
 }
 .select_more{
     position: absolute;
-    background-color: #7ebb7e;
+    background-color: var(--green-color);
     padding: 0.5rem 0rem 1rem 1rem;
     border: solid black 1px;
 }
@@ -104,9 +104,8 @@ h1{
 }
 .select_more button{
     padding: 0.2rem;
-    background-color: blue;
-    color: white;
+    background-color: var(--blue-color);;
     cursor: pointer;
     margin: 0rem 0rem 0rem 0.3rem;
-    border: solid grey 1px;
+    border: solid var(--blue-color) 1px;
 }

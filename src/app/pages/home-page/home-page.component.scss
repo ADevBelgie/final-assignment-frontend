@@ -1,21 +1,11 @@
 .main{
-    background-color: white;
-    opacity: 1;
-    padding: 0px 0px 0.5rem 0px;
+    padding: 0px;
     position: relative;
 }
-.show-deals{
-    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
-    position: relative;
-    text-align: center;
-    display: block;
-    margin: 2rem;
-    padding: 2rem 1rem 2rem 1rem;
-    border-radius: 0.2rem;
-    background-color: #ccd7d9;
-    color: #212020;
-    font-size: 3rem;
-    text-decoration: none;
+.how-it-works{
+    padding-top: 2rem;
+    background-color: white;
+    opacity: 0.8;
 }
 .how-it-works h1{
     text-align: center;
@@ -23,6 +13,12 @@
 }
 .how-it-works h2{
     display: inline-block;
+}
+.how-it-works .logo{
+    height: 105px;
+    position: relative;
+    display: inline-block;
+    margin: auto;
 }
 .d-flex>div{
     padding: 1rem 3rem 1rem 3rem;

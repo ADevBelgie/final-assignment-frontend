@@ -46,7 +46,7 @@
     display: inline-block;
 }
 svg path{
-    fill: #003437;
+    fill: var(--dark-green-color);
 }
 #images{
     overflow: hidden;

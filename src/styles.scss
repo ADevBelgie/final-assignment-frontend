@@ -4,7 +4,14 @@ html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-image: url("/assets/rodion-kutsaev-space.jpg"); 
-    background-size: 100%; 
+    background:linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("/assets/2_Tri_Pattern1.jpg"); 
+    background-size: 10%; 
+    
     image-rendering: -webkit-optimize-contrast;
+}
+:root {
+    --sub-theme-color: #e5e6b7;//#abc3e1;
+    --green-color: #7ebb7e;
+    --light-green-color: #e0ffe4;
+    --dark-green-color: #003437;
 }
