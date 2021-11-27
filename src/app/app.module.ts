@@ -27,6 +27,7 @@ import { PdfCvComponent } from './buttons-icons/pdf-cv/pdf-cv.component';
 import { AdminAreaUsersComponent } from './pages/admin-area-users/admin-area-users.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { HomeCarouselComponent } from './buttons-icons/home-carousel/home-carousel.component';
+import { ShowAllDealsComponent } from './buttons-icons/show-all-deals/show-all-deals.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { HomeCarouselComponent } from './buttons-icons/home-carousel/home-carous
     PdfCvComponent,
     AdminAreaUsersComponent,
     HomePageComponent,
-    HomeCarouselComponent
+    HomeCarouselComponent,
+    ShowAllDealsComponent
   ],
   imports: [
     BrowserModule,

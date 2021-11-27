@@ -27,12 +27,16 @@ export class HomeCarouselComponent implements OnInit {
   public selectedItem:number = 0
   buttonClickable: boolean = true;
 
+  intervalTime:number = 5000;
+  public myTimer = setInterval(()=> { this.right() }, this.intervalTime);
+  
   constructor() { }
 
   ngOnInit(): void {
     this.loadedImages = this.carouselItems.slice(this.startLoadedImages,this.startLoadedImages+3)
   }
   right(){
+    this.resetTimer()
     if (this.buttonClickable) {
       this.buttonClickable = false;
       // calculate left most image
@@ -59,6 +63,7 @@ export class HomeCarouselComponent implements OnInit {
     }
   }
   left(){
+    this.resetTimer()
     if (this.buttonClickable) {
       this.buttonClickable = false;
       // calculate right most image
@@ -150,5 +155,10 @@ export class HomeCarouselComponent implements OnInit {
       this.buttonClickable = true;
       }, 750)
   }
+  resetTimer() {
+    clearInterval(this.myTimer);
+    this.myTimer = setInterval(()=> { this.right() }, this.intervalTime);
+ }
 }
+
 
