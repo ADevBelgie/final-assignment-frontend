@@ -1,6 +1,6 @@
 <div class="container main">
     <div *ngIf="product; else elseBlock"  class="row">
-      <div class="productIsland col col-5">
+      <div class="productIsland col">
         <div>
           <h1>Product Details</h1>
           <div class="row">
@@ -31,7 +31,6 @@
           </div>
         </div>
       </div>
-      <div class="col"></div>
       <div class="col col-5 pt-3"><img src="/assets/{{product.image}}" class="big-thumbnail"></div>
     </div>
 
